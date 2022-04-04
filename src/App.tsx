@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 import InputField from "./components/InputField";
 import { Todo } from "./components/model";
+import SingleTodo from "./components/SingleTodo";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
@@ -23,7 +24,7 @@ const App: React.FC = () => {
       <span className="header">Typescript React Todo list</span>
       <InputField handleAdd={handleAdd} todo={todo} setTodo={setTodo} />
       {todos?.map((todo) => {
-        return <h1>{todo.todo}</h1>;
+        return <SingleTodo todo={todo.todo} />;
       })}
     </div>
   );
