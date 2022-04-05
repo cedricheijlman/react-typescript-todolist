@@ -63,6 +63,7 @@ const SingleTodo = ({ todo, todos, setTodos, index }: SingleTodoProps) => {
         >
           {edit ? (
             <input
+              className="editInput"
               ref={inputRef}
               value={taskTodo}
               onChange={(e) => {
