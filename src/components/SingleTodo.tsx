@@ -1,12 +1,16 @@
 import React from "react";
-import "./Todo.css";
+import "./SingleTodo.css";
 
 interface SingleTodoProps {
   todo: string;
 }
 
 const SingleTodo = ({ todo }: SingleTodoProps) => {
-  return <h1>{todo}</h1>;
+  return (
+    <div>
+      <h2>{todo}</h2>
+    </div>
+  );
 };
 
 export default SingleTodo;
