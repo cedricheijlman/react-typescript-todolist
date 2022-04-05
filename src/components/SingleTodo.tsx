@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./SingleTodo.css";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -43,10 +43,17 @@ const SingleTodo = ({ todo, todos, setTodos }: SingleTodoProps) => {
     setEdit(false);
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [edit]);
+
   return (
     <form onSubmit={(e) => handleEdit(e, todo.id)} className="singleTodo">
       {edit ? (
         <input
+          ref={inputRef}
           value={taskTodo}
           onChange={(e) => {
             setTaskTodo(e.target.value);
@@ -62,6 +69,7 @@ const SingleTodo = ({ todo, todos, setTodos }: SingleTodoProps) => {
         <span
           onClick={() => {
             setEdit((prev) => !prev);
+            setTaskTodo(todo.todo);
           }}
         >
           <BorderColorIcon className="singleTodo__icon" />
