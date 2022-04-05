@@ -73,3 +73,11 @@
   margin-bottom: 3px;
   font-weight: 600;
 }
+
+.dragActive {
+  background-color: rgb(57, 133, 201);
+}
+
+.dragComplete {
+  background-color: red;
+}
