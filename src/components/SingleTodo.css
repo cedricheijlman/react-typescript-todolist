@@ -40,12 +40,14 @@
 }
 
 @media (max-width: 700px) {
-  .todos {
-    width: 95%;
+  .allTodos__activeTasks,
+  .allTodos__completedTasks {
+    width: 100% !important;
+    margin-bottom: 10px;
   }
 
-  .singleTodo {
-    width: 100%;
+  .allTodos {
+    flex-direction: column;
   }
 }
 
