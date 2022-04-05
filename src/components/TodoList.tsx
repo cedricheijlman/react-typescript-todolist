@@ -12,7 +12,7 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
   return (
     <div className="allTodos">
       <div className="allTodos__activeTasks">
-        <span>Active Tasks</span>
+        <span className="allTodos__headerText">Active Tasks</span>
         {todos?.map((todo, index) => {
           return (
             <SingleTodo
@@ -25,7 +25,7 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
         })}
       </div>
       <div className="allTodos__completedTasks">
-        <span>Completed Tasks</span>
+        <span className="allTodos__headerText">Completed Tasks</span>
         {todos?.map((todo, index) => {
           return (
             <SingleTodo
