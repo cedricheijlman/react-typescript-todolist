@@ -12,9 +12,21 @@ interface SingleTodoProps {
 }
 
 const SingleTodo = ({ todo, todos, setTodos }: SingleTodoProps) => {
+  const handleDone = (id: number) => {
+    console.log(id);
+    setTodos((prevValues) =>
+      prevValues.map((todo) =>
+        todo.id == id ? { ...todo, isDone: !todo.isDone } : todo
+      )
+    );
+  };
   return (
     <div className="singleTodo">
-      <h2>{todo.todo}</h2>
+      {todo.isDone ? (
+        <h2 className="singleTodo__taskDone">{todo.todo}</h2>
+      ) : (
+        <h2 className="singleTodo__task">{todo.todo}</h2>
+      )}
       <div className="todoIcons">
         <span>
           <BorderColorIcon className="singleTodo__icon" />
@@ -22,7 +34,11 @@ const SingleTodo = ({ todo, todos, setTodos }: SingleTodoProps) => {
         <span>
           <DeleteIcon className="singleTodo__icon" />
         </span>
-        <span>
+        <span
+          onClick={() => {
+            handleDone(todo.id);
+          }}
+        >
           <DoneIcon className="singleTodo__icon" />
         </span>
       </div>
