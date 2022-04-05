@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SingleTodo.css";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -12,6 +12,9 @@ interface SingleTodoProps {
 }
 
 const SingleTodo = ({ todo, todos, setTodos }: SingleTodoProps) => {
+  const [edit, setEdit] = useState<boolean>(false);
+  const [taskTodo, setTaskTodo] = useState<string>(todo.todo);
+
   // handle task done
   const handleDone = (id: number) => {
     console.log(id);
@@ -27,15 +30,25 @@ const SingleTodo = ({ todo, todos, setTodos }: SingleTodoProps) => {
     setTodos((prevValues) => prevValues.filter((todo) => todo.id !== id));
   };
 
+  // handle edit task
+  const handleEdit = (e: React.FormEvent, id: number) => {};
+
   return (
-    <div className="singleTodo">
-      {todo.isDone ? (
+    <form onSubmit={(e) => handleEdit(e, todo.id)} className="singleTodo">
+      {edit ? (
+        <h2>Editing</h2>
+      ) : todo.isDone ? (
         <h2 className="singleTodo__taskDone">{todo.todo}</h2>
       ) : (
         <h2 className="singleTodo__task">{todo.todo}</h2>
       )}
+
       <div className="todoIcons">
-        <span>
+        <span
+          onClick={() => {
+            setEdit((prev) => !prev);
+          }}
+        >
           <BorderColorIcon className="singleTodo__icon" />
         </span>
         <span
@@ -53,7 +66,7 @@ const SingleTodo = ({ todo, todos, setTodos }: SingleTodoProps) => {
           <DoneIcon className="singleTodo__icon" />
         </span>
       </div>
-    </div>
+    </form>
   );
 };
 
