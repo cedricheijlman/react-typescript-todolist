@@ -31,12 +31,27 @@ const SingleTodo = ({ todo, todos, setTodos }: SingleTodoProps) => {
   };
 
   // handle edit task
-  const handleEdit = (e: React.FormEvent, id: number) => {};
+  const handleEdit = (e: React.FormEvent, id: number) => {
+    e.preventDefault();
+
+    setTodos((prevValues) =>
+      prevValues.map((todo) =>
+        todo.id == id ? { ...todo, todo: taskTodo } : todo
+      )
+    );
+    setTaskTodo("");
+    setEdit(false);
+  };
 
   return (
     <form onSubmit={(e) => handleEdit(e, todo.id)} className="singleTodo">
       {edit ? (
-        <h2>Editing</h2>
+        <input
+          value={taskTodo}
+          onChange={(e) => {
+            setTaskTodo(e.target.value);
+          }}
+        />
       ) : todo.isDone ? (
         <h2 className="singleTodo__taskDone">{todo.todo}</h2>
       ) : (
